@@ -1,9 +1,3 @@
-/*Build an Express server with a GET endpoint /apps. 
-    By default return the complete list of apps in the array. The endpoint accepts the following optional query parameters:
-
-    genres 	one of ['Action', 'Puzzle', 'Strategy', 'Casual', 'Arcade', 'Card'] 	
-    
-    If present the value must be one of the list otherwise an error is returned. Filter the list by the given value.*/
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -20,7 +14,7 @@ app.get('/apps', (req, res) => {
 
     if (sort) {
         if (!['rating', 'app'].includes(sort)) {
-            return res.status(400).send('Sort must be either of "rating" or "app"');
+            return res.status(400).send('Sort must be either "rating" or "app"');
         }
     }
 
@@ -36,6 +30,4 @@ app.get('/apps', (req, res) => {
     res.json(results);
 });
 
-app.listen(9000, () => {
-    console.log('Server started on PORT 9000');
-});
+module.exports = app;
